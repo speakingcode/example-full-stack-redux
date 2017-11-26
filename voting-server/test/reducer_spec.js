@@ -1,15 +1,24 @@
 import { Map, fromJS } from 'immutable'
-import { expext }      from 'chai'
+import { expect }      from 'chai'
 
 import reducer from '../src/reducer'
 
 describe('reducer', () => {
-  it('handles SET_ENTRIES', () + {
+  it('has an initial state', () => {
+    let action = { type: 'SET_ENTREES', entries: ['Trainspotting'] }
+    let nextState = reducer(undefined, action)
+
+    expect(nextState).to.equal(fromJS({
+      entries: ['Trainspotting']
+    }))
+  })
+
+  it('handles SET_ENTRIES', () => {
     let initialState = Map(),
-        action       = { type: 'SET_ENTRIES', entries: ['Trainspotting'] },
+        action       = { type: 'SET_ENTREES', entries: ['Trainspotting'] },
         nextState    = reducer(initialState, action)
 
-    expect(nextState).to.equal(fromJs({
+    expect(nextState).to.equal(fromJS({
       entries: ['Trainspotting']
     }))
   })
